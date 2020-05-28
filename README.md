@@ -1,9 +1,9 @@
 <img src="https://bit.ly/2VnXWr2" alt="Ironhack Logo" width="100"/>
 
-# Title of My Project
-*[Your Name]*
+# Stock Predictor
+*[Javier Hita Vallet-Barceló]*
 
-*[Your Cohort, Campus & Date]*
+*[Data Analytics, Barcelona & March 2020]*
 
 ## Content
 - [Project Description](#project-description)
@@ -19,28 +19,29 @@
 - [Links](#links)
 
 ## Project Description
-Write a short description of your project: 3-5 sentences about what your project is about, why you chose this topic (if relevant), and what you are trying to show.
+The final intention of this project, as the title indicates, is trying to predict the stock market. Who hasn't thought about being able to make money without working? I, obviously, know that it is a nearly impossible thing to do, but not completely. If you want to know more about people who have made it possible, read about Jim Simons (The man who solved the market). Extremely interesting read. Nevertheless, my approach is going to be different, I'm going to gather data from twitter (tweets) regarding a company and it's google trends evolution, mix all with stock data and see what happens.
 
 ## Hypotheses / Questions
-* What data/business/research/personal question you would like to answer?
-* What is the context for the question and the possible scientific or business application?
-* What are the hypotheses you would like to test in order to answer your question?  
-Frame your hypothesis with statistical/data languages (i.e. define Null and Alternative Hypothesis). You can use formulas if you want but that is not required.
+* Can twitter give a hint on whether the stock market of a company is going to increase or decrease? 
+* Will an increase of 10% in the google trends of a company imply an increase or decrease on the companies stock value?
+* Can a peak in google trends mean that the company is doing something noticeable? If yes, can a sentiment analysis on twitter data tell me if the stock will increase or decrease?
+* Which is the best algorithm to predict the stock market changes?
 
 ## Dataset
-* Where did you get your data? If you downloaded a dataset (either public or private), describe where you downloaded it and include the command to load the dataset.
-* Did you build your own datset? If so, did you use an API or a web scraper? PRovide the relevant scripts in your repo.
-* For all types of datasets, provide a description of the size, complexity, and data types included in your dataset, as well as a schema of the tables if necessary.
-* If the question cannot be answered with the available data, why not? What data would you need to answer it better?
+
+I used three different data sources:
+* To gather the data related to stocks, I used an API call alpha advantage, which I highly recommend to anyone interested in this type of data.
+* The data related to twitter, I gathered thanks to a library I installed (twitterscraper). Also highly recommendable to gather twitters passed data. The only inconvenient is that you will have to be patient if you want to gather large amounts of tweets.
+* Pytrends was the non-official google API I found to gather all the data related to google trends. Again, very usefull and easy to use.
+
 
 ## Cleaning
-Describe your full process of data wrangling and cleaning. Document why you chose to fill missing values, extract outliers, or create the variables you did as well as your reasoning behind the process.
+Regarding the cleaning of the data, the stock data was already cleaned and ready to be used. I had more troubels with the Google trends and twitter. Twitter because sometimes, it would only gather 100 tweets from a day, instead of 1.000 (which was the supposed value) and since it took so long I had to predefine it which days to gather the data. At the end of the day, I decised to conduct the analysis and drop the tweets with neutral sentiment analysis and do the mean between the remaining tweets. Giving values according to te polarity of the tweet, ranging from -1 to 1. The dates without tweets data were filled with 0 and in other cases ignored. Regarding the google data, it was all scaled according to the dataframe requested. Since the API had a limit of total calls per minute, in some occasion it was not possible to gather the last 5 years of a company. Therefore, in some cases the data missing was dropped or in some other cases making a rescaling approximation.
 
 ## Analysis
-* Overview the general steps you went through to analyze your data in order to test your hypothesis.
-* Document each step of your data exploration and analysis.
-* Include charts to demonstrate the effect of your work.
-* If you used Machine Learning in your final project, describe your feature selection process.
+Clearly, my first steps once all the different datasets were merged into one dataframe was to look for the basic indicators. At plain sight there was no correlation. Therefore, I had to start plotting the data to try to look for hidden patterns. I started plotting with matplolib and seaborn but in order to explore the data Tableau has no rival. Therefore, I opened the merged csv in Tableau and started playing with the different features. After a while, it became clear that there was no apparent relationship between the three datapoints.
+
+My next step was to start using a machine learning algorithm. In order to do so and not lose all the data from the previous days, which is what is going to determine the output of the algorithm
 
 ## Model Training and Evaluation
 *Include this section only if you chose to include ML in your project.*
@@ -64,9 +65,8 @@ How did you organize your work? Did you use any tools like a trello or kanban bo
 What does your repository look like? Explain your folder and file structure.
 
 ## Links
-Include links to your repository, slides and trello/kanban board. Feel free to include any other links associated with your project.
 
 
-[Repository](https://github.com/)  
-[Slides](https://slides.com/)  
-[Trello](https://trello.com/en)  
+[Repository](https://github.com/Javierhvb/Stock-Predictor)  
+[Slides](https://docs.google.com/presentation/d/1ekQ55ymflhcRIxlxnbWMWz8-Xeuy26LavG8EqqdZn5o/edit?usp=sharing)  
+[Trello](https://trello.com/b/xIqnHxqJ/stock-predictor)  
